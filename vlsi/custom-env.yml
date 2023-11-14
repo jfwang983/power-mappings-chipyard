@@ -18,8 +18,8 @@ power.joules.version: "201"
 synthesis.genus.genus_bin: "/ecad/tools/cadence/GENUS/GENUS211/bin/genus"  # must point to binaries bc Hammer assumes DDI path now
 par.innovus.innovus_bin: "/ecad/tools/cadence/INNOVUS/INNOVUS211/bin/innovus"
 power.joules.joules_bin: "/ecad/tools/cadence/JLS/JLS201/bin/joules"
-sim.vcs.version: "S-2021.09-SP1-1"
-sim.vcs.verdi_home: "/ecad/tools/synopsys/verdi/S-2021.09-SP1-1"
+sim.vcs.version: "P-2019.06-SP1"
+sim.vcs.verdi_home: "/ecad/tools/synopsys/verdi/P-2019.06-SP2-2"
 sim.vcs.verdi_home_meta: lazysubst
 lvs.calibre.version: "2022.2_24.16"
 drc.calibre.version: "2022.2_24.16"
