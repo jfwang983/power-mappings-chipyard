@@ -42,12 +42,12 @@ power.inputs:
   level: "rtl"
   waveforms: []
   report_configs:
-    - waveform_path: output/chipyard.harness.TestHarness.EnergyCharRocketConfig/towers.fsdb
+    - waveform_path: output/chipyard.harness.TestHarness.RocketConfig/towers.fsdb
       inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/alu
       report_name: towers-inst_alu
       output_formats:
       - report
-    - waveform_path: output/chipyard.harness.TestHarness.EnergyCharRocketConfig/towers.fsdb
+    - waveform_path: output/chipyard.harness.TestHarness.RocketConfig/towers.fsdb
       inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/div
       report_name: towers-inst_div
       output_formats:
