@@ -1,0 +1,57 @@
+# Generate Make include to aid in flow
+vlsi.core.build_system: make
+
+vlsi.inputs.power_spec_type: "cpf"
+vlsi.inputs.power_spec_mode: "auto"
+
+# Select tools
+vlsi.core.sim_tool: "hammer.sim.vcs"
+vlsi.core.power_tool: "hammer.power.joules"
+vlsi.core.synthesis_tool: "hammer.synthesis.genus"
+vlsi.core.par_tool: "hammer.par.innovus"
+
+
+# Technology settings
+vlsi.core.technology: "hammer.technology.sky130"
+vlsi.core.sram_generator_tool: "hammer.technology.sky130.sram_compiler"
+
+# Clock
+vlsi.inputs.clocks: [
+  {name: clock_uncore_clock, period: 4.0ns, uncertainty: 0.1ns}
+]
+
+# Simulation Settings
+sim.inputs:
+  timescale: "1ns/10ps"
+  defines: [
+    "N_CYCLES=100",
+    "FUNCTIONAL",
+    "UNIT_DELAY=#1",
+    "USE_POWER_PINS"
+    ]
+  defines_meta: 'append'
+  saif.mode: 'none'
+  options:
+    - "-notice"
+    - "-line"
+    - "+warn=none"
+    - "+lint=none"
+
+# RTL Power Settings
+power.inputs:
+  level: "rtl"
+  waveforms: []
+  report_configs:
+    - waveform_path: output/chipyard.harness.TestHarness.EnergyCharRocketConfig/towers.fsdb
+      inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/alu
+      report_name: towers-inst_alu
+      output_formats:
+      - report
+    - waveform_path: output/chipyard.harness.TestHarness.EnergyCharRocketConfig/towers.fsdb
+      inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/div
+      report_name: towers-inst_div
+      output_formats:
+      - report
+      # # time-based analysis keys (for profile output format) 
+      # toggle_signal: /ChipTop/clock_uncore_clock
+      # num_toggles: 100
