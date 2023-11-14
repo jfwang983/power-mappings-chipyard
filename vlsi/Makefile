@@ -42,7 +42,7 @@ HAMMER_EXEC        ?= $(if $(filter $(tech_name),sky130),\
                         ./example-vlsi-sky130,\
                         ./example-vlsi)
 VLSI_TOP           ?= $(TOP)
-VLSI_MODEL_DUT_NAME ?= chiptop
+VLSI_MODEL_DUT_NAME ?= chiptop0
 # If overriding, this should be relative to $(vlsi_dir)
 VLSI_OBJ_DIR       ?= build
 ifneq ($(CUSTOM_VLOG),)
@@ -62,6 +62,7 @@ all: drc lvs
 #########################################################################################
 # import other necessary rules and variables
 #########################################################################################
+include $(vlsi_dir)/custom.mk
 include $(base_dir)/common.mk
 
 #########################################################################################
