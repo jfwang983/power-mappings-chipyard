@@ -10,4 +10,4 @@ HAMMER_EXTRA_ARGS   ?= $(foreach conf, $(INPUT_CONFS), -p $(conf)) $(args)
 
 BINARY 				?= $(RISCV)/riscv64-unknown-elf/share/riscv-tests/benchmarks/towers.riscv
 
-CONFIG				?= RocketConfig
+CONFIG				?= CustomGemminiSoCConfig
