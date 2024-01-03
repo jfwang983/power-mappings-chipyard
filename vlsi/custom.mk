@@ -8,6 +8,7 @@ ENV_YML            = $(vlsi_dir)/custom-env.yml
 
 HAMMER_EXTRA_ARGS   ?= $(foreach conf, $(INPUT_CONFS), -p $(conf)) $(args)
 
-BINARY 				?= $(RISCV)/riscv64-unknown-elf/share/riscv-tests/benchmarks/towers.riscv
+BINARY ?= /scratch/jfwang/power-prediction/power-mappings-chipyard/generators/gemmini/software/gemmini-rocc-tests/build/bareMetalC/matmul_tilings_0-baremetal
+# BINARY 				?= $(RISCV)/riscv64-unknown-elf/share/riscv-tests/benchmarks/towers.riscv
 
 CONFIG				?= CustomGemminiSoCConfig
