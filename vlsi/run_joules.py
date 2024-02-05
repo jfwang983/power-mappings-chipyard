@@ -20,6 +20,18 @@ def run_power_rtl():
     end = int(sys.argv[2])
 
     for i in range(start, end):
+        # MK Setup
+        custom_mk_file = "../power-mappings-chipyard/vlsi/custom.mk"
+        with open(custom_mk_file, "r") as f:
+            data = f.readlines()
+            
+        binary_file = f"/scratch/jfwang/power-prediction/power-mappings-chipyard/generators/gemmini/software/gemmini-rocc-tests/build/bareMetalC/conv_tilings_{i}-baremetal"
+        data[-3] = f"BINARY \t\t\t\t?= {binary_file}\n"
+
+        with open(custom_mk_file, "w") as f:
+            f.writelines(data)
+
+        # YAML Setup
         waveform_path = path_1_temp + str(i) + path_2_temp
         report_name = report_temp + str(i)
         with open(yaml_file, 'r') as f:
