@@ -24,7 +24,7 @@ def run_power_rtl():
 
     for i in range(start, end):
         # MK Setup
-        custom_mk_file = "../power-mappings-chipyard/vlsi/custom.mk"
+        custom_mk_file = "../vlsi/custom.mk"
         with open(custom_mk_file, "r") as f:
             data = f.readlines()
             
