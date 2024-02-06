@@ -3,21 +3,24 @@ import subprocess
 import yaml
 
 def run_power_rtl():
-    yaml_file = "custom.yml"
-    path_1_temp = "output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/matmul_tilings_"
-    path_2_temp = "-baremetal.fsdb"
-    report_temp = "bert-inst_gemmini-"
-
-    subprocess.call("source /ecad/tools/vlsi.bashrc", shell=True)
-
-    try:
+    try:     
         sys.argv[1]
         sys.argv[2]
+        sys.argv[3]
+        sys.argv[4]
     except Exception as e:
         raise ValueError("Not enough args")
     
-    start = int(sys.argv[1])
-    end = int(sys.argv[2])
+    yaml_file = "custom.yml"
+    path_1_temp = f"output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/{sys.argv[1]}_tilings_"
+    path_2_temp = "-baremetal.fsdb"
+    report_temp = sys.argv[2] + "_"
+    report_2_temp = "-baremetal-gemmini"
+
+    subprocess.call("source /ecad/tools/vlsi.bashrc", shell=True)
+
+    start = int(sys.argv[3])
+    end = int(sys.argv[4])
 
     for i in range(start, end):
         # MK Setup
@@ -33,7 +36,7 @@ def run_power_rtl():
 
         # YAML Setup
         waveform_path = path_1_temp + str(i) + path_2_temp
-        report_name = report_temp + str(i)
+        report_name = report_temp + str(i) + report_2_temp
         with open(yaml_file, 'r') as f:
             custom = yaml.safe_load(f)
         custom['power.inputs']['report_configs'][0]['waveform_path'] = waveform_path
