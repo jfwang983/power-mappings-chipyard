@@ -21,6 +21,7 @@ def run_power_rtl():
 
     start = int(sys.argv[3])
     end = int(sys.argv[4])
+    init_rtl = len(sys.argv) == 6 and sys.argv[5] == "-init"
 
     for i in range(start, end):
         # MK Setup
@@ -45,6 +46,9 @@ def run_power_rtl():
         with open(yaml_file, 'w',) as f:
             yaml.dump(custom, f, sort_keys=False)
     
-        subprocess.call('make redo-power-rtl args="--only_step report_power"', shell=True)
+        if init_rtl:
+            subprocess.call('make power-rtl', shell=True)
+        else:
+            subprocess.call('make redo-power-rtl args="--only_step report_power"', shell=True)
 
 run_power_rtl()
