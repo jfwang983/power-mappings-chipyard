@@ -17,7 +17,7 @@ vlsi.core.sram_generator_tool: "hammer.technology.sky130.sram_compiler"
 
 # Clock
 vlsi.inputs.clocks: [
-  {name: clock_uncore_clock, period: 16.0ns, uncertainty: 0.1ns}
+  {name: clock_uncore_clock, period: 32.0ns, uncertainty: 0.1ns}
 ]
 
 # Simulation Settings
