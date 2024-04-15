@@ -43,15 +43,7 @@ power.inputs:
   waveforms: []
   report_configs:
     - waveform_path: output/chipyard.harness.TestHarness.RocketConfig/towers.fsdb
-      inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/alu
+      inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini
       report_name: towers-inst_alu
       output_formats:
       - report
-    - waveform_path: output/chipyard.harness.TestHarness.RocketConfig/towers.fsdb
-      inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/core/div
-      report_name: towers-inst_div
-      output_formats:
-      - report
-      # # time-based analysis keys (for profile output format) 
-      # toggle_signal: /ChipTop/clock_uncore_clock
-      # num_toggles: 100
