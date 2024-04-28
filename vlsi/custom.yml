@@ -42,7 +42,7 @@ power.inputs:
   level: "rtl"
   waveforms: []
   report_configs:
-- waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
     inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini
     report_name: workload-baremetal-gemmini
     toggle_signal: /ChipTop/clock_uncore_clock
