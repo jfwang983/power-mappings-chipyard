@@ -302,5 +302,5 @@ GEN_COLLATERAL_DIR ?= $(build_dir)/gen-collateral
 #########################################################################################
 # assembly/benchmark variables
 #########################################################################################
-timeout_cycles = 10000000
+timeout_cycles = 100000000
 bmark_timeout_cycles = 100000000
