@@ -18,10 +18,5 @@ sim.vcs.version: "S-2021.09-SP1-1" # need to bump down these versions because jo
 sim.vcs.verdi_home: "/tools/synopsys/verdi/${sim.vcs.version}"
 sim.vcs.verdi_home_meta: lazysubst
 
-# Sky130 paths
-technology.sky130:
-  sky130A: "/tools/commercial/skywater/local/conda-sky130/share/pdk/sky130A"
-  sram22_sky130_macros: "/tools/commercial/skywater/local/sram22_sky130_macros"
-  openram_lib: "/tools/commercial/skywater/local/sky130_sram_macros"
-  sky130_nda: "/tools/commercial/skywater/swtech130/skywater-src-nda-20221031"
-  sky130_cds: "/tools/commercial/skywater/sky130_cds/sky130_prelim_release_091123"
+# Tech paths
+technology.intech22.install_dir: /tools/intech22

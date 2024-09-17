@@ -1,6 +1,8 @@
 # Generate Make include to aid in flow
 vlsi.core.build_system: make
 
+vlsi.core.max_threads: 8
+
 vlsi.inputs.power_spec_type: "cpf"
 vlsi.inputs.power_spec_mode: "auto"
 
@@ -12,8 +14,8 @@ vlsi.core.par_tool: "hammer.par.innovus"
 
 
 # Technology settings
-vlsi.core.technology: "hammer.technology.sky130"
-vlsi.core.sram_generator_tool: "hammer.technology.sky130.sram_compiler"
+vlsi.core.technology: hammer.intech22
+vlsi.core.sram_generator_tool: hammer.intech22.sram_compiler
 
 # Clock
 vlsi.inputs.clocks: [
@@ -23,14 +25,22 @@ vlsi.inputs.clocks: [
 # Simulation Settings
 sim.inputs:
   timescale: "1ns/10ps"
+  # defines: [
+  #   "N_CYCLES=100",
+  #   "FUNCTIONAL",
+  #   "UNIT_DELAY=#1",
+  #   "USE_POWER_PINS"
+  #   ]
   defines: [
-    "N_CYCLES=100",
-    "FUNCTIONAL",
-    "UNIT_DELAY=#1",
-    "USE_POWER_PINS"
+    "INTCNOPWR",
+    "INTC_NO_PWR_PINS",
+    "INTC_EMULATION",
+    "INTEL_NO_PWR_PINS",
+    "INTEL_EMULATION",
+    "INTC_FUNCTIONAL",
     ]
   defines_meta: 'append'
-  saif.mode: 'none'
+  # saif.mode: 'none'
   options:
     - "-notice"
     - "-line"
@@ -42,60 +52,68 @@ power.inputs:
   level: "rtl"
   waveforms: []
   report_configs:
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini
-    report_name: workload-baremetal-gemmini
+  - waveform_path: output/chipyard.harness.TestHarness.RocketConfig/towers.fsdb
+    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile
+    report_name: towers-test
     toggle_signal: /ChipTop/clock_uncore_clock
     num_toggles: 100
     output_formats:
     - report
     - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_0
-    report_name: workload-baremetal-spad_mems_0
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_1
-    report_name: workload-baremetal-spad_mems_1
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_2
-    report_name: workload-baremetal-spad_mems_2
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_3
-    report_name: workload-baremetal-spad_mems_3
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/acc_mems_0
-    report_name: workload-baremetal-acc_mems_0
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/acc_mems_1
-    report_name: workload-baremetal-acc_mems_1
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
-    inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/ex_controller/mesh
-    report_name: workload-baremetal-mesh
-    toggle_signal: /ChipTop/clock_uncore_clock
-    num_toggles: 100
-    output_formats:
-    - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini
+  #   report_name: workload-baremetal-gemmini
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - report
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_0
+  #   report_name: workload-baremetal-spad_mems_0
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_1
+  #   report_name: workload-baremetal-spad_mems_1
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_2
+  #   report_name: workload-baremetal-spad_mems_2
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/spad_mems_3
+  #   report_name: workload-baremetal-spad_mems_3
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/acc_mems_0
+  #   report_name: workload-baremetal-acc_mems_0
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/spad/acc_mems_1
+  #   report_name: workload-baremetal-acc_mems_1
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
+  # - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/workload-baremetal.fsdb
+  #   inst: /ChipTop/system/tile_prci_domain/tile_reset_domain_tile/gemmini/ex_controller/mesh
+  #   report_name: workload-baremetal-mesh
+  #   toggle_signal: /ChipTop/clock_uncore_clock
+  #   num_toggles: 100
+  #   output_formats:
+  #   - plot_profile
