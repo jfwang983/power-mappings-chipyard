@@ -19,7 +19,7 @@ vlsi.core.sram_generator_tool: hammer.intech22.sram_compiler
 
 # Clock
 vlsi.inputs.clocks: [
-  {name: clock_uncore_clock, period: 32.0ns, uncertainty: 0.1ns}
+  {name: clock_uncore_clock, period: 10.0ns, uncertainty: 0.1ns}
 ]
 
 # Simulation Settings
