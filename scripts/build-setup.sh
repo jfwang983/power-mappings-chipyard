@@ -190,7 +190,7 @@ if run_step "1"; then
     fi
     echo "Storing main conda environment in $CONDA_ENV_NAME"
 
-    conda-lock install --conda $(which conda) $CONDA_ENV_ARG $LOCKFILE &&
+    conda-lock install $CONDA_ENV_ARG $LOCKFILE &&
     source $(conda info --base)/etc/profile.d/conda.sh &&
     conda activate $CONDA_ENV_NAME
     exit_if_last_command_failed
