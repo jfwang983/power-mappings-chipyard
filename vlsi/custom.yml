@@ -32,9 +32,6 @@ power.inputs:
   waveforms: []
   report_configs:
   - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
-    output_formats:
-    - ppa
-  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
     inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini
     report_name: simple-baremetal-gemmini
     toggle_signal: /ChipTop/clock
@@ -91,3 +88,6 @@ power.inputs:
     num_toggles: 100
     output_formats:
     - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    output_formats:
+    - ppa
