@@ -154,9 +154,6 @@
 [submodule "generators/vexiiriscv"]
 	path = generators/vexiiriscv
 	url = https://github.com/ucb-bar/vexiiriscv-tile.git
-[submodule "hammer-intech22-plugin"]
-	path = hammer-intech22-plugin
-	url = git@bwrcrepo.eecs.berkeley.edu:intech22/hammer-intech22-plugin.git
 [submodule "vlsi/hammer-intech22-plugin"]
 	path = vlsi/hammer-intech22-plugin
 	url = git@bwrcrepo.eecs.berkeley.edu:intech22/hammer-intech22-plugin.git
