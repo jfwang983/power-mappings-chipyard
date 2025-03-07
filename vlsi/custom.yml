@@ -1,0 +1,93 @@
+vlsi.core.build_system: make
+vlsi.core.max_threads: 8
+vlsi.inputs.power_spec_type: cpf
+vlsi.inputs.power_spec_mode: auto
+vlsi.core.sim_tool: hammer.sim.vcs
+vlsi.core.power_tool: hammer.power.joules
+vlsi.core.synthesis_tool: hammer.synthesis.genus
+vlsi.core.par_tool: hammer.par.innovus
+vlsi.core.technology: hammer.intech22
+vlsi.core.sram_generator_tool: hammer.intech22.sram_compiler
+vlsi.inputs.clocks:
+- name: clock
+  period: 4.0ns
+  uncertainty: 0.1ns
+sim.inputs:
+  timescale: 1ns/10ps
+  defines:
+  - INTCNOPWR
+  - INTC_NO_PWR_PINS
+  - INTC_EMULATION
+  - INTEL_NO_PWR_PINS
+  - INTEL_EMULATION
+  - INTC_FUNCTIONAL
+  defines_meta: append
+  options:
+  - -notice
+  - -line
+  - +warn=none
+  - +lint=none
+power.inputs:
+  level: rtl
+  waveforms: []
+  report_configs:
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    output_formats:
+    - ppa
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini
+    report_name: simple-baremetal-gemmini
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - report
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/spad_mems_0
+    report_name: simple-baremetal-spad_mems_0
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/spad_mems_1
+    report_name: simple-baremetal-spad_mems_1
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/spad_mems_2
+    report_name: simple-baremetal-spad_mems_2
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/spad_mems_3
+    report_name: simple-baremetal-spad_mems_3
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/acc_mems_0
+    report_name: simple-baremetal-acc_mems_0
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/spad/acc_mems_1
+    report_name: simple-baremetal-acc_mems_1
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile
+  - waveform_path: output/chipyard.harness.TestHarness.CustomGemminiSoCConfig/simple-baremetal.fsdb
+    inst: /ChipTop/system/tile_prci_domain/element_reset_domain_rockettile/gemmini/ex_controller/mesh/mesh
+    report_name: simple-baremetal-mesh
+    toggle_signal: /ChipTop/clock
+    num_toggles: 100
+    output_formats:
+    - plot_profile

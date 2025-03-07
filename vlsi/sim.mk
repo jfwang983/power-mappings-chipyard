@@ -58,13 +58,13 @@ ifndef USE_VPD
 endif
 	echo "  defines_meta: 'append'" >> $@
 	echo "  execution_flags:" >> $@
-	for x in $(VERBOSE_FLAGS) $(call get_waveform_flag,$(call get_sim_out_name,$(BINARY))); do \
+	for x in $(VERBOSE_FLAGS) $(call get_waveform_flag,$(call get_sim_out_name,$(BINARY))) $(call get_loadmem_flag,$(LOADMEM)); do \
 	  echo '    - "'$$x'"' >> $@; \
 	done
 	echo "  execution_flags_meta: 'append'" >> $@
-	echo "  saif.mode: 'time'" >> $@
-	echo "  saif.start_time: '0ns'" >> $@
-	echo "  saif.end_time: '`bc <<< $(TIMEOUT_CYCLES)*$(CLOCK_PERIOD)`ns'" >> $@
+# echo "  saif.mode: 'time'" >> $@
+# echo "  saif.start_time: '0ns'" >> $@
+# echo "  saif.end_time: '`bc <<< $(TIMEOUT_CYCLES)*$(CLOCK_PERIOD)`ns'" >> $@
 ifndef USE_VPD
 	echo "  options:" >> $@
 	echo '    - "-kdb"' >> $@
